@@ -1,25 +1,43 @@
-<div id="gd-west-africa-map-v3">
+<div id="gd-west-africa-map-v4">
 
   <div class="gdwa-wrap">
+
     <div class="gdwa-map-top">
       <div class="gdwa-title">West Africa's coastline</div>
 
       <button class="gdwa-replay" type="button" aria-label="Reset map" title="Reset">↻</button>
     </div>
 
+
     <div class="gdwa-map-container">
 
-      <svg class="gdwa-svg" viewBox="0 0 1000 680" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Interactive map of West Africa">
-        <rect x="0" y="0" width="1000" height="680" fill="#323da5"></rect>
+      <svg
+        class="gdwa-svg"
+        viewBox="0 0 1000 680"
+        preserveAspectRatio="xMidYMid meet"
+        role="img"
+        aria-label="Interactive map of West Africa">
+
+        <rect
+          x="0"
+          y="0"
+          width="1000"
+          height="680"
+          fill="#323da5">
+        </rect>
+
       </svg>
 
+
       <div class="gdwa-tooltip"></div>
+
 
       <div class="gdwa-loading">
         Loading map…
       </div>
 
     </div>
+
 
     <div class="gdwa-legend">
 
@@ -35,6 +53,7 @@
 
     </div>
 
+
     <div class="gdwa-badge">Gd</div>
 
   </div>
@@ -47,9 +66,10 @@
 /* =========================================================
    GLOBALDEV WEST AFRICA MAP
    WORDPRESS-SAFE VERSION
+   NO DUPLICATE ISLANDS
    ========================================================= */
 
-#gd-west-africa-map-v3 {
+#gd-west-africa-map-v4 {
 
   --gd-bg: #F8F4EE;
   --gd-water: #323da5;
@@ -59,20 +79,26 @@
   --gd-black: #000000;
 
   width: 100%;
+
   background: #F8F4EE;
 
   font-family: "Outfit", Arial, sans-serif;
+
   font-weight: 700;
 
   color: #000000;
 
   box-sizing: border-box;
+
 }
 
-#gd-west-africa-map-v3 *,
-#gd-west-africa-map-v3 *::before,
-#gd-west-africa-map-v3 *::after {
+
+#gd-west-africa-map-v4 *,
+#gd-west-africa-map-v4 *::before,
+#gd-west-africa-map-v4 *::after {
+
   box-sizing: border-box;
+
 }
 
 
@@ -80,9 +106,10 @@
    WRAPPER
    ========================================================= */
 
-#gd-west-africa-map-v3 .gdwa-wrap {
+#gd-west-africa-map-v4 .gdwa-wrap {
 
   width: 100%;
+
   max-width: 1100px;
 
   margin: 0 auto;
@@ -90,6 +117,7 @@
   padding: 14px 14px 10px;
 
   background: #F8F4EE;
+
 }
 
 
@@ -97,24 +125,31 @@
    TOP
    ========================================================= */
 
-#gd-west-africa-map-v3 .gdwa-map-top {
+#gd-west-africa-map-v4 .gdwa-map-top {
 
   display: flex;
 
   align-items: center;
+
   justify-content: space-between;
 
   min-height: 38px;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-title {
+
+#gd-west-africa-map-v4 .gdwa-title {
 
   font-size: 20px;
+
   line-height: 1.2;
+
   font-weight: 700;
 
   margin: 0;
+
   padding: 0;
+
 }
 
 
@@ -122,18 +157,22 @@
    REPLAY
    ========================================================= */
 
-#gd-west-africa-map-v3 .gdwa-replay {
+#gd-west-africa-map-v4 .gdwa-replay {
 
   width: 38px;
+
   height: 38px;
 
   border: 0;
+
   background: transparent;
 
   color: #000000;
 
   font-family: Arial, sans-serif;
+
   font-size: 25px;
+
   font-weight: 700;
 
   cursor: pointer;
@@ -141,7 +180,9 @@
   border-radius: 50%;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   transition:
@@ -149,20 +190,27 @@
     transform .2s ease;
 
   padding: 0;
+
   margin: 0;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-replay:hover {
+
+#gd-west-africa-map-v4 .gdwa-replay:hover {
 
   background: rgba(0,0,0,.07);
 
   transform: rotate(-35deg);
+
 }
 
-#gd-west-africa-map-v3 .gdwa-replay:focus-visible {
+
+#gd-west-africa-map-v4 .gdwa-replay:focus-visible {
 
   outline: 2px solid #000;
+
   outline-offset: 2px;
+
 }
 
 
@@ -170,7 +218,7 @@
    MAP CONTAINER
    ========================================================= */
 
-#gd-west-africa-map-v3 .gdwa-map-container {
+#gd-west-africa-map-v4 .gdwa-map-container {
 
   position: relative;
 
@@ -185,16 +233,20 @@
   overflow: hidden;
 
   aspect-ratio: 1000 / 680;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-svg {
+
+#gd-west-africa-map-v4 .gdwa-svg {
 
   display: block;
 
   width: 100%;
+
   height: 100%;
 
   background: #323da5;
+
 }
 
 
@@ -202,11 +254,12 @@
    COUNTRIES
    ========================================================= */
 
-#gd-west-africa-map-v3 .gdwa-country {
+#gd-west-africa-map-v4 .gdwa-country {
 
   fill: #ffffff;
 
   stroke: #999999;
+
   stroke-width: .8;
 
   vector-effect: non-scaling-stroke;
@@ -217,55 +270,39 @@
     fill .18s ease,
     stroke .18s ease,
     opacity .18s ease;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-country.study {
+
+#gd-west-africa-map-v4 .gdwa-country.study {
 
   fill: #ffd166;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-country:hover {
+
+#gd-west-africa-map-v4 .gdwa-country:hover {
 
   stroke: #000000;
+
   stroke-width: 1.5;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-country.selected {
+
+#gd-west-africa-map-v4 .gdwa-country.selected {
 
   stroke: #000000;
+
   stroke-width: 2;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-country.dimmed {
+
+#gd-west-africa-map-v4 .gdwa-country.dimmed {
 
   opacity: .38;
-}
 
-
-/* =========================================================
-   ISLAND STUDY MARKERS
-   ========================================================= */
-
-#gd-west-africa-map-v3 .gdwa-island-study {
-
-  fill: #ffd166;
-
-  stroke: #000000;
-
-  stroke-width: 1.3;
-
-  vector-effect: non-scaling-stroke;
-
-  cursor: pointer;
-
-  transition:
-    transform .15s ease,
-    opacity .15s ease;
-}
-
-#gd-west-africa-map-v3 .gdwa-island-study:hover {
-
-  stroke-width: 2;
 }
 
 
@@ -273,7 +310,7 @@
    LABELS
    ========================================================= */
 
-#gd-west-africa-map-v3 .gdwa-label {
+#gd-west-africa-map-v4 .gdwa-label {
 
   fill: #000000;
 
@@ -294,42 +331,21 @@
   stroke-width: 3px;
 
   stroke-linejoin: round;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-label-small {
+
+#gd-west-africa-map-v4 .gdwa-label-small {
 
   font-size: 10px;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-label-tiny {
+
+#gd-west-africa-map-v4 .gdwa-label-tiny {
 
   font-size: 9px;
-}
 
-
-/* =========================================================
-   ISLAND LABELS
-   ========================================================= */
-
-#gd-west-africa-map-v3 .gdwa-island-label {
-
-  fill: #000000;
-
-  font-family: "Outfit", Arial, sans-serif;
-
-  font-weight: 700;
-
-  font-size: 10px;
-
-  text-anchor: middle;
-
-  pointer-events: none;
-
-  paint-order: stroke;
-
-  stroke: #F8F4EE;
-
-  stroke-width: 3px;
 }
 
 
@@ -337,7 +353,7 @@
    GULF
    ========================================================= */
 
-#gd-west-africa-map-v3 .gdwa-gulf {
+#gd-west-africa-map-v4 .gdwa-gulf {
 
   fill: #000000;
 
@@ -352,6 +368,7 @@
   text-anchor: middle;
 
   pointer-events: none;
+
 }
 
 
@@ -359,7 +376,7 @@
    TOOLTIP
    ========================================================= */
 
-#gd-west-africa-map-v3 .gdwa-tooltip {
+#gd-west-africa-map-v4 .gdwa-tooltip {
 
   position: absolute;
 
@@ -392,18 +409,23 @@
   transition: opacity .12s ease;
 
   max-width: 210px;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-tooltip.visible {
+
+#gd-west-africa-map-v4 .gdwa-tooltip.visible {
 
   opacity: 1;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-tooltip-status {
+
+#gd-west-africa-map-v4 .gdwa-tooltip-status {
 
   font-size: 10px;
 
   margin-top: 3px;
+
 }
 
 
@@ -411,11 +433,12 @@
    LEGEND
    ========================================================= */
 
-#gd-west-africa-map-v3 .gdwa-legend {
+#gd-west-africa-map-v4 .gdwa-legend {
 
   display: flex;
 
   justify-content: center;
+
   align-items: center;
 
   flex-wrap: wrap;
@@ -425,20 +448,25 @@
   padding: 11px 4px 7px;
 
   font-size: 12px;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-legend-item {
+
+#gd-west-africa-map-v4 .gdwa-legend-item {
 
   display: flex;
 
   align-items: center;
 
   gap: 7px;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-key {
+
+#gd-west-africa-map-v4 .gdwa-key {
 
   width: 17px;
+
   height: 13px;
 
   border: 1px solid #000;
@@ -446,16 +474,21 @@
   display: inline-block;
 
   flex: 0 0 auto;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-key-study {
+
+#gd-west-africa-map-v4 .gdwa-key-study {
 
   background: #ffd166;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-key-other {
+
+#gd-west-africa-map-v4 .gdwa-key-other {
 
   background: #ffffff;
+
 }
 
 
@@ -463,9 +496,10 @@
    GD BADGE
    ========================================================= */
 
-#gd-west-africa-map-v3 .gdwa-badge {
+#gd-west-africa-map-v4 .gdwa-badge {
 
   width: 46px;
+
   height: 46px;
 
   margin: 8px auto 2px;
@@ -479,6 +513,7 @@
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   color: #000000;
@@ -488,6 +523,7 @@
   font-size: 18px;
 
   font-weight: 700;
+
 }
 
 
@@ -495,7 +531,7 @@
    LOADING
    ========================================================= */
 
-#gd-west-africa-map-v3 .gdwa-loading {
+#gd-west-africa-map-v4 .gdwa-loading {
 
   position: absolute;
 
@@ -506,6 +542,7 @@
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   background: #323da5;
@@ -519,11 +556,14 @@
   text-align: center;
 
   padding: 20px;
+
 }
 
-#gd-west-africa-map-v3 .gdwa-loading.hidden {
+
+#gd-west-africa-map-v4 .gdwa-loading.hidden {
 
   display: none;
+
 }
 
 
@@ -531,13 +571,14 @@
    ERROR STATE
    ========================================================= */
 
-#gd-west-africa-map-v3 .gdwa-loading.error {
+#gd-west-africa-map-v4 .gdwa-loading.error {
 
   background: #323da5;
 
   color: #ffffff;
 
   cursor: pointer;
+
 }
 
 
@@ -547,55 +588,67 @@
 
 @media (max-width: 650px) {
 
-  #gd-west-africa-map-v3 .gdwa-wrap {
+  #gd-west-africa-map-v4 .gdwa-wrap {
 
     padding-left: 7px;
+
     padding-right: 7px;
+
   }
 
-  #gd-west-africa-map-v3 .gdwa-title {
+
+  #gd-west-africa-map-v4 .gdwa-title {
 
     font-size: 17px;
+
   }
 
-  #gd-west-africa-map-v3 .gdwa-label {
+
+  #gd-west-africa-map-v4 .gdwa-label {
 
     font-size: 8px;
+
   }
 
-  #gd-west-africa-map-v3 .gdwa-label-small {
+
+  #gd-west-africa-map-v4 .gdwa-label-small {
 
     font-size: 7px;
+
   }
 
-  #gd-west-africa-map-v3 .gdwa-label-tiny {
+
+  #gd-west-africa-map-v4 .gdwa-label-tiny {
 
     font-size: 6px;
+
   }
 
-  #gd-west-africa-map-v3 .gdwa-island-label {
 
-    font-size: 7px;
-  }
-
-  #gd-west-africa-map-v3 .gdwa-gulf {
+  #gd-west-africa-map-v4 .gdwa-gulf {
 
     font-size: 10px;
+
   }
 
-  #gd-west-africa-map-v3 .gdwa-legend {
+
+  #gd-west-africa-map-v4 .gdwa-legend {
 
     font-size: 10px;
 
     gap: 12px;
+
   }
 
-  #gd-west-africa-map-v3 .gdwa-badge {
+
+  #gd-west-africa-map-v4 .gdwa-badge {
 
     width: 42px;
+
     height: 42px;
 
     font-size: 17px;
+
   }
 
 }
@@ -607,9 +660,10 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-  #gd-west-africa-map-v3 * {
+  #gd-west-africa-map-v4 * {
 
     transition: none !important;
+
   }
 
 }
@@ -629,26 +683,29 @@
      ======================================================= */
 
   var root = document.getElementById(
-    "gd-west-africa-map-v3"
+    "gd-west-africa-map-v4"
   );
 
+
   if (!root) {
+
     return;
+
   }
 
 
   /*
-   * IMPORTANT:
-   *
-   * Do not use a global "already initialized" variable.
-   *
-   * WordPress page builders, caching plugins and AJAX
-   * navigation can execute embedded scripts more than once.
+   * Prevent duplicate initialization if WordPress,
+   * a page builder or a caching system executes
+   * the script more than once.
    */
 
   if (root.dataset.gdInitialized === "true") {
+
     return;
+
   }
+
 
   root.dataset.gdInitialized = "true";
 
@@ -660,11 +717,14 @@
   var svg =
     root.querySelector(".gdwa-svg");
 
+
   var tooltip =
     root.querySelector(".gdwa-tooltip");
 
+
   var loading =
     root.querySelector(".gdwa-loading");
+
 
   var replay =
     root.querySelector(".gdwa-replay");
@@ -682,6 +742,7 @@
     );
 
     return;
+
   }
 
 
@@ -696,21 +757,30 @@
         'link[data-gd-west-africa-font]'
       )
     ) {
+
       return;
+
     }
+
 
     var font =
       document.createElement("link");
 
+
     font.rel = "stylesheet";
+
 
     font.href =
       "https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap";
 
+
     font.dataset.gdWestAfricaFont = "true";
 
+
     document.head.appendChild(font);
+
   }
+
 
   loadFont();
 
@@ -721,14 +791,8 @@
 
   var DATA_URLS = [
 
-    /*
-     * Primary
-     */
     "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries.geojson",
 
-    /*
-     * Fallback
-     */
     "https://cdn.jsdelivr.net/gh/nvkelso/natural-earth-vector@master/geojson/ne_50m_admin_0_countries.geojson"
 
   ];
@@ -767,8 +831,12 @@
     "NGA",
 
     /*
-     * Island study areas
+     * Island study countries.
+     *
+     * These are now represented ONLY by their
+     * Natural Earth GeoJSON polygons.
      */
+
     "CPV",
     "STP"
 
@@ -803,8 +871,11 @@
     "CMR",
 
     /*
-     * Island study areas
+     * Island study countries.
+     *
+     * Their actual GeoJSON geometries are used.
      */
+
     "CPV",
     "STP"
 
@@ -887,13 +958,19 @@
     "CMR": [12.0, 6.8],
 
     /*
-     * Cape Verde
+     * Cape Verde.
+     *
+     * Only ONE label is created.
      */
+
     "CPV": [-24.0, 15.7],
 
     /*
-     * São Tomé and Príncipe
+     * São Tomé and Príncipe.
+     *
+     * Only ONE label is created.
      */
+
     "STP": [6.65, 0.7]
 
   };
@@ -916,14 +993,19 @@
 
       var finished = false;
 
+
       var timer =
         setTimeout(function () {
 
           if (finished) {
+
             return;
+
           }
 
+
           finished = true;
+
 
           reject(
             new Error(message)
@@ -933,33 +1015,46 @@
 
 
       promise.then(
+
         function (value) {
 
           if (finished) {
+
             return;
+
           }
+
 
           finished = true;
 
+
           clearTimeout(timer);
+
 
           resolve(value);
 
         },
 
+
         function (error) {
 
           if (finished) {
+
             return;
+
           }
+
 
           finished = true;
 
+
           clearTimeout(timer);
+
 
           reject(error);
 
         }
+
       );
 
     });
@@ -974,9 +1069,7 @@
   function loadD3() {
 
     /*
-     * BEST CASE:
-     *
-     * D3 is already available.
+     * D3 already available.
      */
 
     if (
@@ -987,14 +1080,9 @@
       return Promise.resolve(
         window.d3
       );
+
     }
 
-
-    /*
-     * If another script has already started loading D3,
-     * check for it periodically rather than waiting for
-     * an event which may already have fired.
-     */
 
     return new Promise(function (
       resolve,
@@ -1011,6 +1099,7 @@
 
         var elapsed = 0;
 
+
         var check =
           setInterval(function () {
 
@@ -1024,6 +1113,7 @@
               resolve(window.d3);
 
               return;
+
             }
 
 
@@ -1046,14 +1136,9 @@
 
 
         return;
+
       }
 
-
-      /*
-       * No D3 script exists.
-       *
-       * Try the CDNs sequentially.
-       */
 
       function tryD3(index) {
 
@@ -1066,6 +1151,7 @@
           );
 
           return;
+
         }
 
 
@@ -1076,9 +1162,12 @@
         script.src =
           D3_URLS[index];
 
+
         script.async = true;
 
-        script.dataset.gdD3 = "true";
+
+        script.dataset.gdD3 =
+          "true";
 
 
         var settled = false;
@@ -1088,12 +1177,17 @@
           setTimeout(function () {
 
             if (settled) {
+
               return;
+
             }
+
 
             settled = true;
 
+
             script.remove();
+
 
             tryD3(index + 1);
 
@@ -1104,10 +1198,14 @@
           function () {
 
             if (settled) {
+
               return;
+
             }
 
+
             settled = true;
+
 
             clearTimeout(timer);
 
@@ -1134,14 +1232,20 @@
           function () {
 
             if (settled) {
+
               return;
+
             }
+
 
             settled = true;
 
+
             clearTimeout(timer);
 
+
             script.remove();
+
 
             tryD3(index + 1);
 
@@ -1211,6 +1315,7 @@
 
 
       return timed
+
         .then(function (response) {
 
           if (!response.ok) {
@@ -1222,22 +1327,24 @@
 
           }
 
+
           return response.json();
 
         })
-        .catch(function () {
 
-          /*
-           * Try fallback URL.
-           */
+
+        .catch(function () {
 
           if (controller) {
 
             try {
+
               controller.abort();
+
             } catch (e) {}
 
           }
+
 
           return tryURL(index + 1);
 
@@ -1256,6 +1363,20 @@
      ======================================================= */
 
   function startMap() {
+
+    /*
+     * Clear old error state.
+     */
+
+    loading.classList.remove("error");
+
+
+    loading.innerHTML =
+      "Loading map…";
+
+
+    loading.onclick = null;
+
 
     loadD3()
 
@@ -1279,23 +1400,17 @@
         );
 
 
-        /*
-         * Never leave the user with an unexplained
-         * permanent "Loading map…" message.
-         */
+        loading.classList.add(
+          "error"
+        );
 
-        loading.classList.add("error");
 
         loading.innerHTML =
           "Map could not be loaded.<br>" +
           "<span style='font-size:11px;font-weight:400'>" +
-          "Please refresh the page."
-          + "</span>";
+          "Please refresh the page." +
+          "</span>";
 
-
-        /*
-         * Clicking the error state retries.
-         */
 
         loading.onclick =
           function () {
@@ -1304,8 +1419,10 @@
               "error"
             );
 
+
             loading.innerHTML =
               "Loading map…";
+
 
             startMap();
 
@@ -1322,7 +1439,8 @@
 
   function drawMap(world) {
 
-    var d3 = window.d3;
+    var d3 =
+      window.d3;
 
 
     if (
@@ -1349,6 +1467,7 @@
           var iso =
             getISO(feature);
 
+
           return visibleISO.has(iso);
 
         }
@@ -1365,38 +1484,38 @@
 
 
     /* -------------------------------------------------------
-       CHECK ISLANDS
+       DEBUG CHECK
        ------------------------------------------------------- */
 
-    var foundCapeVerde =
-      features.some(
+    var capeVerdeCount =
+      features.filter(
         function (f) {
 
           return getISO(f) === "CPV";
 
         }
-      );
+      ).length;
 
 
-    var foundSTP =
-      features.some(
+    var saoTomeCount =
+      features.filter(
         function (f) {
 
           return getISO(f) === "STP";
 
         }
-      );
+      ).length;
 
 
     console.log(
-      "GlobalDev map — Cape Verde:",
-      foundCapeVerde
+      "GlobalDev map — Cape Verde GeoJSON features:",
+      capeVerdeCount
     );
 
 
     console.log(
-      "GlobalDev map — São Tomé and Príncipe:",
-      foundSTP
+      "GlobalDev map — São Tomé and Príncipe GeoJSON features:",
+      saoTomeCount
     );
 
 
@@ -1481,6 +1600,7 @@
 
             var iso =
               getISO(d);
+
 
             return (
               "gdwa-country" +
@@ -1571,6 +1691,13 @@
           }
 
 
+          /*
+           * The island countries also use the
+           * normal country-label system.
+           *
+           * There is NO second island label.
+           */
+
           return "gdwa-label";
 
         }
@@ -1627,157 +1754,6 @@
 
         }
       );
-
-
-    /* =======================================================
-       ISLAND EMPHASIS
-       ======================================================= */
-
-    var islandPoints = [
-
-      {
-        iso: "CPV",
-        coordinates: [-23.5, 15.1],
-        label: "Cape Verde"
-      },
-
-      {
-        iso: "STP",
-        coordinates: [6.62, 0.25],
-        label: "São Tomé and Príncipe"
-      }
-
-    ];
-
-
-    var islandGroup =
-      mapGroup
-        .append("g")
-        .attr(
-          "class",
-          "gdwa-island-emphasis"
-        );
-
-
-    islandPoints.forEach(
-      function (island) {
-
-        var p =
-          projection(
-            island.coordinates
-          );
-
-
-        if (!p) {
-          return;
-        }
-
-
-        islandGroup
-          .append("circle")
-          .attr(
-            "class",
-            "gdwa-island-study"
-          )
-          .attr(
-            "cx",
-            p[0]
-          )
-          .attr(
-            "cy",
-            p[1]
-          )
-          .attr(
-            "r",
-            island.iso === "CPV"
-              ? 5
-              : 6
-          )
-          .attr(
-            "data-iso",
-            island.iso
-          )
-          .attr(
-            "tabindex",
-            "0"
-          )
-          .attr(
-            "role",
-            "button"
-          )
-          .attr(
-            "aria-label",
-            island.label
-          )
-          .on(
-            "mouseenter",
-            function (event) {
-
-              showSimpleTooltip(
-                island.label,
-                "Study country",
-                event
-              );
-
-            }
-          )
-          .on(
-            "mousemove",
-            function (event) {
-
-              moveTooltip(event);
-
-            }
-          )
-          .on(
-            "mouseleave",
-            hideTooltip
-          )
-          .on(
-            "click",
-            function (event) {
-
-              event.stopPropagation();
-
-              selectIsland(
-                island.iso,
-                island.label
-              );
-
-            }
-          );
-
-
-        /*
-         * Island labels
-         */
-
-        var labelOffset =
-          island.iso === "CPV"
-            ? [-2, -13]
-            : [35, 4];
-
-
-        islandGroup
-          .append("text")
-          .attr(
-            "class",
-            "gdwa-island-label"
-          )
-          .attr(
-            "x",
-            p[0] + labelOffset[0]
-          )
-          .attr(
-            "y",
-            p[1] + labelOffset[1]
-          )
-          .text(
-            island.label
-          );
-
-      }
-    );
 
 
     /* =======================================================
@@ -1880,23 +1856,15 @@
       function () {
 
         countryPaths
+
           .classed(
             "selected",
             false
           )
+
           .classed(
             "dimmed",
             false
-          );
-
-
-        islandGroup
-          .selectAll(
-            ".gdwa-island-study"
-          )
-          .attr(
-            "opacity",
-            1
           );
 
 
@@ -1914,23 +1882,15 @@
       function () {
 
         countryPaths
+
           .classed(
             "selected",
             false
           )
+
           .classed(
             "dimmed",
             false
-          );
-
-
-        islandGroup
-          .selectAll(
-            ".gdwa-island-study"
-          )
-          .attr(
-            "opacity",
-            1
           );
 
 
@@ -1964,11 +1924,6 @@
       var p =
         feature.properties || {};
 
-
-      /*
-       * Natural Earth can expose ISO information
-       * under different property names.
-       */
 
       var candidates = [
 
@@ -2032,9 +1987,11 @@
       var iso =
         getISO(d);
 
+
       var name =
         names[iso] ||
         getName(d);
+
 
       var study =
         studyISO.has(iso);
@@ -2091,7 +2048,9 @@
 
 
       if (!container) {
+
         return;
+
       }
 
 
@@ -2179,6 +2138,7 @@
       var iso =
         getISO(d);
 
+
       var name =
         names[iso] ||
         getName(d);
@@ -2212,7 +2172,9 @@
 
 
       if (!container) {
+
         return;
+
       }
 
 
@@ -2227,76 +2189,6 @@
         studyISO.has(iso)
           ? "Study country"
           : "Other country",
-
-        {
-
-          clientX:
-            rect.left + 20,
-
-          clientY:
-            rect.top + 20
-
-        }
-
-      );
-
-    }
-
-
-    function selectIsland(
-      iso,
-      name
-    ) {
-
-      /*
-       * Dim mainland countries.
-       */
-
-      countryPaths
-        .classed(
-          "dimmed",
-          true
-        )
-        .classed(
-          "selected",
-          false
-        );
-
-
-      /*
-       * Keep island marker visible.
-       */
-
-      islandGroup
-        .selectAll(
-          ".gdwa-island-study"
-        )
-        .attr(
-          "opacity",
-          1
-        );
-
-
-      var container =
-        root.querySelector(
-          ".gdwa-map-container"
-        );
-
-
-      if (!container) {
-        return;
-      }
-
-
-      var rect =
-        container.getBoundingClientRect();
-
-
-      showSimpleTooltip(
-
-        name,
-
-        "Study country",
 
         {
 
