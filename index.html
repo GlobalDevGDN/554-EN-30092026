@@ -1,0 +1,2359 @@
+<div id="gd-west-africa-map-v3">
+
+  <div class="gdwa-wrap">
+    <div class="gdwa-map-top">
+      <div class="gdwa-title">West Africa's coastline</div>
+
+      <button class="gdwa-replay" type="button" aria-label="Reset map" title="Reset">↻</button>
+    </div>
+
+    <div class="gdwa-map-container">
+
+      <svg class="gdwa-svg" viewBox="0 0 1000 680" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Interactive map of West Africa">
+        <rect x="0" y="0" width="1000" height="680" fill="#323da5"></rect>
+      </svg>
+
+      <div class="gdwa-tooltip"></div>
+
+      <div class="gdwa-loading">
+        Loading map…
+      </div>
+
+    </div>
+
+    <div class="gdwa-legend">
+
+      <div class="gdwa-legend-item">
+        <span class="gdwa-key gdwa-key-study"></span>
+        <span>Study countries</span>
+      </div>
+
+      <div class="gdwa-legend-item">
+        <span class="gdwa-key gdwa-key-other"></span>
+        <span>Other countries</span>
+      </div>
+
+    </div>
+
+    <div class="gdwa-badge">Gd</div>
+
+  </div>
+
+</div>
+
+
+<style>
+
+/* =========================================================
+   GLOBALDEV WEST AFRICA MAP
+   WORDPRESS-SAFE VERSION
+   ========================================================= */
+
+#gd-west-africa-map-v3 {
+
+  --gd-bg: #F8F4EE;
+  --gd-water: #323da5;
+  --gd-study: #ffd166;
+  --gd-land: #ffffff;
+  --gd-border: #999999;
+  --gd-black: #000000;
+
+  width: 100%;
+  background: #F8F4EE;
+
+  font-family: "Outfit", Arial, sans-serif;
+  font-weight: 700;
+
+  color: #000000;
+
+  box-sizing: border-box;
+}
+
+#gd-west-africa-map-v3 *,
+#gd-west-africa-map-v3 *::before,
+#gd-west-africa-map-v3 *::after {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   WRAPPER
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-wrap {
+
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 14px 14px 10px;
+
+  background: #F8F4EE;
+}
+
+
+/* =========================================================
+   TOP
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-map-top {
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 38px;
+}
+
+#gd-west-africa-map-v3 .gdwa-title {
+
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================================
+   REPLAY
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-replay {
+
+  width: 38px;
+  height: 38px;
+
+  border: 0;
+  background: transparent;
+
+  color: #000000;
+
+  font-family: Arial, sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background .15s ease,
+    transform .2s ease;
+
+  padding: 0;
+  margin: 0;
+}
+
+#gd-west-africa-map-v3 .gdwa-replay:hover {
+
+  background: rgba(0,0,0,.07);
+
+  transform: rotate(-35deg);
+}
+
+#gd-west-africa-map-v3 .gdwa-replay:focus-visible {
+
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   MAP CONTAINER
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-map-container {
+
+  position: relative;
+
+  width: 100%;
+
+  margin-top: 3px;
+
+  background: #323da5;
+
+  border: 1px solid #000;
+
+  overflow: hidden;
+
+  aspect-ratio: 1000 / 680;
+}
+
+#gd-west-africa-map-v3 .gdwa-svg {
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  background: #323da5;
+}
+
+
+/* =========================================================
+   COUNTRIES
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-country {
+
+  fill: #ffffff;
+
+  stroke: #999999;
+  stroke-width: .8;
+
+  vector-effect: non-scaling-stroke;
+
+  cursor: pointer;
+
+  transition:
+    fill .18s ease,
+    stroke .18s ease,
+    opacity .18s ease;
+}
+
+#gd-west-africa-map-v3 .gdwa-country.study {
+
+  fill: #ffd166;
+}
+
+#gd-west-africa-map-v3 .gdwa-country:hover {
+
+  stroke: #000000;
+  stroke-width: 1.5;
+}
+
+#gd-west-africa-map-v3 .gdwa-country.selected {
+
+  stroke: #000000;
+  stroke-width: 2;
+}
+
+#gd-west-africa-map-v3 .gdwa-country.dimmed {
+
+  opacity: .38;
+}
+
+
+/* =========================================================
+   ISLAND STUDY MARKERS
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-island-study {
+
+  fill: #ffd166;
+
+  stroke: #000000;
+
+  stroke-width: 1.3;
+
+  vector-effect: non-scaling-stroke;
+
+  cursor: pointer;
+
+  transition:
+    transform .15s ease,
+    opacity .15s ease;
+}
+
+#gd-west-africa-map-v3 .gdwa-island-study:hover {
+
+  stroke-width: 2;
+}
+
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-label {
+
+  fill: #000000;
+
+  font-family: "Outfit", Arial, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 12px;
+
+  text-anchor: middle;
+
+  pointer-events: none;
+
+  paint-order: stroke;
+
+  stroke: rgba(248,244,238,.7);
+
+  stroke-width: 3px;
+
+  stroke-linejoin: round;
+}
+
+#gd-west-africa-map-v3 .gdwa-label-small {
+
+  font-size: 10px;
+}
+
+#gd-west-africa-map-v3 .gdwa-label-tiny {
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   ISLAND LABELS
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-island-label {
+
+  fill: #000000;
+
+  font-family: "Outfit", Arial, sans-serif;
+
+  font-weight: 700;
+
+  font-size: 10px;
+
+  text-anchor: middle;
+
+  pointer-events: none;
+
+  paint-order: stroke;
+
+  stroke: #F8F4EE;
+
+  stroke-width: 3px;
+}
+
+
+/* =========================================================
+   GULF
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-gulf {
+
+  fill: #000000;
+
+  font-family: "Outfit", Arial, sans-serif;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  text-anchor: middle;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TOOLTIP
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-tooltip {
+
+  position: absolute;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  padding: 9px 12px;
+
+  background: #ffffff;
+
+  border: 1px solid #000000;
+
+  border-radius: 5px;
+
+  color: #000000;
+
+  font-family: "Outfit", Arial, sans-serif;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  box-shadow: 3px 3px 0 rgba(0,0,0,.12);
+
+  transition: opacity .12s ease;
+
+  max-width: 210px;
+}
+
+#gd-west-africa-map-v3 .gdwa-tooltip.visible {
+
+  opacity: 1;
+}
+
+#gd-west-africa-map-v3 .gdwa-tooltip-status {
+
+  font-size: 10px;
+
+  margin-top: 3px;
+}
+
+
+/* =========================================================
+   LEGEND
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-legend {
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 22px;
+
+  padding: 11px 4px 7px;
+
+  font-size: 12px;
+}
+
+#gd-west-africa-map-v3 .gdwa-legend-item {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+}
+
+#gd-west-africa-map-v3 .gdwa-key {
+
+  width: 17px;
+  height: 13px;
+
+  border: 1px solid #000;
+
+  display: inline-block;
+
+  flex: 0 0 auto;
+}
+
+#gd-west-africa-map-v3 .gdwa-key-study {
+
+  background: #ffd166;
+}
+
+#gd-west-africa-map-v3 .gdwa-key-other {
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   GD BADGE
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-badge {
+
+  width: 46px;
+  height: 46px;
+
+  margin: 8px auto 2px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(0,0,0,.12);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #000000;
+
+  font-family: "Outfit", Arial, sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-loading {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 30;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #323da5;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  text-align: center;
+
+  padding: 20px;
+}
+
+#gd-west-africa-map-v3 .gdwa-loading.hidden {
+
+  display: none;
+}
+
+
+/* =========================================================
+   ERROR STATE
+   ========================================================= */
+
+#gd-west-africa-map-v3 .gdwa-loading.error {
+
+  background: #323da5;
+
+  color: #ffffff;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  #gd-west-africa-map-v3 .gdwa-wrap {
+
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  #gd-west-africa-map-v3 .gdwa-title {
+
+    font-size: 17px;
+  }
+
+  #gd-west-africa-map-v3 .gdwa-label {
+
+    font-size: 8px;
+  }
+
+  #gd-west-africa-map-v3 .gdwa-label-small {
+
+    font-size: 7px;
+  }
+
+  #gd-west-africa-map-v3 .gdwa-label-tiny {
+
+    font-size: 6px;
+  }
+
+  #gd-west-africa-map-v3 .gdwa-island-label {
+
+    font-size: 7px;
+  }
+
+  #gd-west-africa-map-v3 .gdwa-gulf {
+
+    font-size: 10px;
+  }
+
+  #gd-west-africa-map-v3 .gdwa-legend {
+
+    font-size: 10px;
+
+    gap: 12px;
+  }
+
+  #gd-west-africa-map-v3 .gdwa-badge {
+
+    width: 42px;
+    height: 42px;
+
+    font-size: 17px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  #gd-west-africa-map-v3 * {
+
+    transition: none !important;
+  }
+
+}
+
+</style>
+
+
+<script>
+
+(function () {
+
+  "use strict";
+
+
+  /* =======================================================
+     ROOT
+     ======================================================= */
+
+  var root = document.getElementById(
+    "gd-west-africa-map-v3"
+  );
+
+  if (!root) {
+    return;
+  }
+
+
+  /*
+   * IMPORTANT:
+   *
+   * Do not use a global "already initialized" variable.
+   *
+   * WordPress page builders, caching plugins and AJAX
+   * navigation can execute embedded scripts more than once.
+   */
+
+  if (root.dataset.gdInitialized === "true") {
+    return;
+  }
+
+  root.dataset.gdInitialized = "true";
+
+
+  /* =======================================================
+     ELEMENTS
+     ======================================================= */
+
+  var svg =
+    root.querySelector(".gdwa-svg");
+
+  var tooltip =
+    root.querySelector(".gdwa-tooltip");
+
+  var loading =
+    root.querySelector(".gdwa-loading");
+
+  var replay =
+    root.querySelector(".gdwa-replay");
+
+
+  if (
+    !svg ||
+    !tooltip ||
+    !loading ||
+    !replay
+  ) {
+
+    console.error(
+      "GlobalDev map: Required HTML elements are missing."
+    );
+
+    return;
+  }
+
+
+  /* =======================================================
+     LOAD OUTFIT
+     ======================================================= */
+
+  function loadFont() {
+
+    if (
+      document.querySelector(
+        'link[data-gd-west-africa-font]'
+      )
+    ) {
+      return;
+    }
+
+    var font =
+      document.createElement("link");
+
+    font.rel = "stylesheet";
+
+    font.href =
+      "https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap";
+
+    font.dataset.gdWestAfricaFont = "true";
+
+    document.head.appendChild(font);
+  }
+
+  loadFont();
+
+
+  /* =======================================================
+     DATA URLS
+     ======================================================= */
+
+  var DATA_URLS = [
+
+    /*
+     * Primary
+     */
+    "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries.geojson",
+
+    /*
+     * Fallback
+     */
+    "https://cdn.jsdelivr.net/gh/nvkelso/natural-earth-vector@master/geojson/ne_50m_admin_0_countries.geojson"
+
+  ];
+
+
+  /* =======================================================
+     D3 URLS
+     ======================================================= */
+
+  var D3_URLS = [
+
+    "https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js",
+
+    "https://unpkg.com/d3@7.9.0/dist/d3.min.js"
+
+  ];
+
+
+  /* =======================================================
+     STUDY COUNTRIES
+     ======================================================= */
+
+  var studyISO = new Set([
+
+    "MRT",
+    "SEN",
+    "GMB",
+    "GNB",
+    "GIN",
+    "SLE",
+    "LBR",
+    "CIV",
+    "GHA",
+    "TGO",
+    "BEN",
+    "NGA",
+
+    /*
+     * Island study areas
+     */
+    "CPV",
+    "STP"
+
+  ]);
+
+
+  /* =======================================================
+     VISIBLE COUNTRIES
+     ======================================================= */
+
+  var visibleISO = new Set([
+
+    "ESH",
+
+    "MRT",
+    "SEN",
+    "GMB",
+    "GNB",
+    "GIN",
+    "SLE",
+    "LBR",
+    "CIV",
+    "GHA",
+    "TGO",
+    "BEN",
+    "NGA",
+
+    "MLI",
+    "BFA",
+    "NER",
+    "DZA",
+    "CMR",
+
+    /*
+     * Island study areas
+     */
+    "CPV",
+    "STP"
+
+  ]);
+
+
+  /* =======================================================
+     DISPLAY NAMES
+     ======================================================= */
+
+  var names = {
+
+    "MRT": "Mauritania",
+    "SEN": "Senegal",
+    "GMB": "The Gambia",
+    "GNB": "Guinea-Bissau",
+    "GIN": "Guinea",
+    "SLE": "Sierra Leone",
+    "LBR": "Liberia",
+    "CIV": "Côte d’Ivoire",
+    "GHA": "Ghana",
+    "TGO": "Togo",
+    "BEN": "Benin",
+    "NGA": "Nigeria",
+
+    "MLI": "Mali",
+    "BFA": "Burkina Faso",
+    "NER": "Niger",
+    "DZA": "Algeria",
+    "CMR": "Cameroon",
+
+    "ESH": "Western Sahara",
+
+    "CPV": "Cape Verde",
+    "STP": "São Tomé and Príncipe"
+
+  };
+
+
+  /* =======================================================
+     LABEL POSITIONS
+     ======================================================= */
+
+  var labelPositions = {
+
+    "ESH": [-12.0, 24.0],
+
+    "MRT": [-10.7, 20.0],
+
+    "SEN": [-14.5, 14.5],
+
+    "GMB": [-15.5, 13.45],
+
+    "GNB": [-15.0, 12.0],
+
+    "GIN": [-10.8, 10.8],
+
+    "SLE": [-12.1, 8.7],
+
+    "LBR": [-9.7, 6.6],
+
+    "CIV": [-5.5, 7.8],
+
+    "GHA": [-1.2, 7.9],
+
+    "TGO": [1.1, 8.4],
+
+    "BEN": [2.4, 10.0],
+
+    "NGA": [8.2, 9.2],
+
+    "BFA": [-1.7, 12.3],
+
+    "MLI": [-3.5, 17.0],
+
+    "NER": [8.0, 17.0],
+
+    "DZA": [2.5, 25.0],
+
+    "CMR": [12.0, 6.8],
+
+    /*
+     * Cape Verde
+     */
+    "CPV": [-24.0, 15.7],
+
+    /*
+     * São Tomé and Príncipe
+     */
+    "STP": [6.65, 0.7]
+
+  };
+
+
+  /* =======================================================
+     SAFE TIMEOUT
+     ======================================================= */
+
+  function timeoutPromise(
+    promise,
+    milliseconds,
+    message
+  ) {
+
+    return new Promise(function (
+      resolve,
+      reject
+    ) {
+
+      var finished = false;
+
+      var timer =
+        setTimeout(function () {
+
+          if (finished) {
+            return;
+          }
+
+          finished = true;
+
+          reject(
+            new Error(message)
+          );
+
+        }, milliseconds);
+
+
+      promise.then(
+        function (value) {
+
+          if (finished) {
+            return;
+          }
+
+          finished = true;
+
+          clearTimeout(timer);
+
+          resolve(value);
+
+        },
+
+        function (error) {
+
+          if (finished) {
+            return;
+          }
+
+          finished = true;
+
+          clearTimeout(timer);
+
+          reject(error);
+
+        }
+      );
+
+    });
+
+  }
+
+
+  /* =======================================================
+     LOAD D3
+     ======================================================= */
+
+  function loadD3() {
+
+    /*
+     * BEST CASE:
+     *
+     * D3 is already available.
+     */
+
+    if (
+      window.d3 &&
+      typeof window.d3.geoMercator === "function"
+    ) {
+
+      return Promise.resolve(
+        window.d3
+      );
+    }
+
+
+    /*
+     * If another script has already started loading D3,
+     * check for it periodically rather than waiting for
+     * an event which may already have fired.
+     */
+
+    return new Promise(function (
+      resolve,
+      reject
+    ) {
+
+      var existing =
+        document.querySelector(
+          'script[data-gd-d3], script[src*="d3.min.js"]'
+        );
+
+
+      if (existing) {
+
+        var elapsed = 0;
+
+        var check =
+          setInterval(function () {
+
+            if (
+              window.d3 &&
+              typeof window.d3.geoMercator === "function"
+            ) {
+
+              clearInterval(check);
+
+              resolve(window.d3);
+
+              return;
+            }
+
+
+            elapsed += 100;
+
+
+            if (elapsed >= 10000) {
+
+              clearInterval(check);
+
+              reject(
+                new Error(
+                  "D3.js was found but did not become available."
+                )
+              );
+
+            }
+
+          }, 100);
+
+
+        return;
+      }
+
+
+      /*
+       * No D3 script exists.
+       *
+       * Try the CDNs sequentially.
+       */
+
+      function tryD3(index) {
+
+        if (index >= D3_URLS.length) {
+
+          reject(
+            new Error(
+              "Unable to load D3.js."
+            )
+          );
+
+          return;
+        }
+
+
+        var script =
+          document.createElement("script");
+
+
+        script.src =
+          D3_URLS[index];
+
+        script.async = true;
+
+        script.dataset.gdD3 = "true";
+
+
+        var settled = false;
+
+
+        var timer =
+          setTimeout(function () {
+
+            if (settled) {
+              return;
+            }
+
+            settled = true;
+
+            script.remove();
+
+            tryD3(index + 1);
+
+          }, 10000);
+
+
+        script.onload =
+          function () {
+
+            if (settled) {
+              return;
+            }
+
+            settled = true;
+
+            clearTimeout(timer);
+
+
+            if (
+              window.d3 &&
+              typeof window.d3.geoMercator === "function"
+            ) {
+
+              resolve(window.d3);
+
+            } else {
+
+              script.remove();
+
+              tryD3(index + 1);
+
+            }
+
+          };
+
+
+        script.onerror =
+          function () {
+
+            if (settled) {
+              return;
+            }
+
+            settled = true;
+
+            clearTimeout(timer);
+
+            script.remove();
+
+            tryD3(index + 1);
+
+          };
+
+
+        document.head.appendChild(script);
+
+      }
+
+
+      tryD3(0);
+
+    });
+
+  }
+
+
+  /* =======================================================
+     LOAD GEOJSON
+     ======================================================= */
+
+  function loadData() {
+
+    function tryURL(index) {
+
+      if (
+        index >= DATA_URLS.length
+      ) {
+
+        return Promise.reject(
+          new Error(
+            "Unable to load the map data."
+          )
+        );
+
+      }
+
+
+      var controller =
+        typeof AbortController !== "undefined"
+          ? new AbortController()
+          : null;
+
+
+      var request =
+        fetch(
+          DATA_URLS[index],
+          {
+            mode: "cors",
+            credentials: "omit",
+
+            signal:
+              controller
+                ? controller.signal
+                : undefined
+          }
+        );
+
+
+      var timed =
+        timeoutPromise(
+          request,
+          15000,
+          "Map data request timed out."
+        );
+
+
+      return timed
+        .then(function (response) {
+
+          if (!response.ok) {
+
+            throw new Error(
+              "Map data returned HTTP " +
+              response.status
+            );
+
+          }
+
+          return response.json();
+
+        })
+        .catch(function () {
+
+          /*
+           * Try fallback URL.
+           */
+
+          if (controller) {
+
+            try {
+              controller.abort();
+            } catch (e) {}
+
+          }
+
+          return tryURL(index + 1);
+
+        });
+
+    }
+
+
+    return tryURL(0);
+
+  }
+
+
+  /* =======================================================
+     START MAP
+     ======================================================= */
+
+  function startMap() {
+
+    loadD3()
+
+      .then(function () {
+
+        return loadData();
+
+      })
+
+      .then(function (world) {
+
+        drawMap(world);
+
+      })
+
+      .catch(function (error) {
+
+        console.error(
+          "GlobalDev West Africa map:",
+          error
+        );
+
+
+        /*
+         * Never leave the user with an unexplained
+         * permanent "Loading map…" message.
+         */
+
+        loading.classList.add("error");
+
+        loading.innerHTML =
+          "Map could not be loaded.<br>" +
+          "<span style='font-size:11px;font-weight:400'>" +
+          "Please refresh the page."
+          + "</span>";
+
+
+        /*
+         * Clicking the error state retries.
+         */
+
+        loading.onclick =
+          function () {
+
+            loading.classList.remove(
+              "error"
+            );
+
+            loading.innerHTML =
+              "Loading map…";
+
+            startMap();
+
+          };
+
+      });
+
+  }
+
+
+  /* =======================================================
+     DRAW MAP
+     ======================================================= */
+
+  function drawMap(world) {
+
+    var d3 = window.d3;
+
+
+    if (
+      !world ||
+      !world.features ||
+      !Array.isArray(world.features)
+    ) {
+
+      throw new Error(
+        "Invalid GeoJSON data."
+      );
+
+    }
+
+
+    /* -------------------------------------------------------
+       FILTER COUNTRIES
+       ------------------------------------------------------- */
+
+    var features =
+      world.features.filter(
+        function (feature) {
+
+          var iso =
+            getISO(feature);
+
+          return visibleISO.has(iso);
+
+        }
+      );
+
+
+    if (!features.length) {
+
+      throw new Error(
+        "No West African countries were found in the dataset."
+      );
+
+    }
+
+
+    /* -------------------------------------------------------
+       CHECK ISLANDS
+       ------------------------------------------------------- */
+
+    var foundCapeVerde =
+      features.some(
+        function (f) {
+
+          return getISO(f) === "CPV";
+
+        }
+      );
+
+
+    var foundSTP =
+      features.some(
+        function (f) {
+
+          return getISO(f) === "STP";
+
+        }
+      );
+
+
+    console.log(
+      "GlobalDev map — Cape Verde:",
+      foundCapeVerde
+    );
+
+
+    console.log(
+      "GlobalDev map — São Tomé and Príncipe:",
+      foundSTP
+    );
+
+
+    /* -------------------------------------------------------
+       COLLECTION
+       ------------------------------------------------------- */
+
+    var collection = {
+
+      type: "FeatureCollection",
+
+      features: features
+
+    };
+
+
+    /* -------------------------------------------------------
+       PROJECTION
+       ------------------------------------------------------- */
+
+    var projection =
+      d3.geoMercator()
+        .fitExtent(
+          [
+            [48, 35],
+            [952, 610]
+          ],
+          collection
+        );
+
+
+    /* -------------------------------------------------------
+       PATH
+       ------------------------------------------------------- */
+
+    var path =
+      d3.geoPath()
+        .projection(projection);
+
+
+    /* -------------------------------------------------------
+       CLEAR PREVIOUS MAP
+       ------------------------------------------------------- */
+
+    while (
+      svg.childNodes.length > 1
+    ) {
+
+      svg.removeChild(
+        svg.lastChild
+      );
+
+    }
+
+
+    /* -------------------------------------------------------
+       MAIN GROUP
+       ------------------------------------------------------- */
+
+    var mapGroup =
+      d3.select(svg)
+        .append("g")
+        .attr(
+          "class",
+          "gdwa-map-group"
+        );
+
+
+    /* =======================================================
+       COUNTRIES
+       ======================================================= */
+
+    var countryPaths =
+      mapGroup
+        .selectAll(".gdwa-country")
+        .data(features)
+        .enter()
+        .append("path")
+        .attr(
+          "class",
+          function (d) {
+
+            var iso =
+              getISO(d);
+
+            return (
+              "gdwa-country" +
+              (
+                studyISO.has(iso)
+                  ? " study"
+                  : ""
+              )
+            );
+
+          }
+        )
+        .attr(
+          "d",
+          path
+        )
+        .attr(
+          "data-iso",
+          getISO
+        )
+        .attr(
+          "tabindex",
+          function (d) {
+
+            return studyISO.has(
+              getISO(d)
+            )
+              ? "0"
+              : "-1";
+
+          }
+        )
+        .attr(
+          "role",
+          "button"
+        )
+        .attr(
+          "aria-label",
+          function (d) {
+
+            return (
+              names[getISO(d)] ||
+              getName(d)
+            );
+
+          }
+        );
+
+
+    /* =======================================================
+       COUNTRY LABELS
+       ======================================================= */
+
+    mapGroup
+      .selectAll(".gdwa-label")
+      .data(features)
+      .enter()
+      .append("text")
+      .attr(
+        "class",
+        function (d) {
+
+          var iso =
+            getISO(d);
+
+
+          if (
+            iso === "GNB" ||
+            iso === "SLE" ||
+            iso === "ESH"
+          ) {
+
+            return (
+              "gdwa-label gdwa-label-small"
+            );
+
+          }
+
+
+          if (
+            iso === "GMB"
+          ) {
+
+            return (
+              "gdwa-label gdwa-label-tiny"
+            );
+
+          }
+
+
+          return "gdwa-label";
+
+        }
+      )
+      .attr(
+        "x",
+        function (d) {
+
+          var p =
+            labelPositions[
+              getISO(d)
+            ];
+
+
+          if (p) {
+
+            return projection(p)[0];
+
+          }
+
+
+          return path.centroid(d)[0];
+
+        }
+      )
+      .attr(
+        "y",
+        function (d) {
+
+          var p =
+            labelPositions[
+              getISO(d)
+            ];
+
+
+          if (p) {
+
+            return projection(p)[1];
+
+          }
+
+
+          return path.centroid(d)[1];
+
+        }
+      )
+      .text(
+        function (d) {
+
+          return (
+            names[getISO(d)] ||
+            getName(d)
+          );
+
+        }
+      );
+
+
+    /* =======================================================
+       ISLAND EMPHASIS
+       ======================================================= */
+
+    var islandPoints = [
+
+      {
+        iso: "CPV",
+        coordinates: [-23.5, 15.1],
+        label: "Cape Verde"
+      },
+
+      {
+        iso: "STP",
+        coordinates: [6.62, 0.25],
+        label: "São Tomé and Príncipe"
+      }
+
+    ];
+
+
+    var islandGroup =
+      mapGroup
+        .append("g")
+        .attr(
+          "class",
+          "gdwa-island-emphasis"
+        );
+
+
+    islandPoints.forEach(
+      function (island) {
+
+        var p =
+          projection(
+            island.coordinates
+          );
+
+
+        if (!p) {
+          return;
+        }
+
+
+        islandGroup
+          .append("circle")
+          .attr(
+            "class",
+            "gdwa-island-study"
+          )
+          .attr(
+            "cx",
+            p[0]
+          )
+          .attr(
+            "cy",
+            p[1]
+          )
+          .attr(
+            "r",
+            island.iso === "CPV"
+              ? 5
+              : 6
+          )
+          .attr(
+            "data-iso",
+            island.iso
+          )
+          .attr(
+            "tabindex",
+            "0"
+          )
+          .attr(
+            "role",
+            "button"
+          )
+          .attr(
+            "aria-label",
+            island.label
+          )
+          .on(
+            "mouseenter",
+            function (event) {
+
+              showSimpleTooltip(
+                island.label,
+                "Study country",
+                event
+              );
+
+            }
+          )
+          .on(
+            "mousemove",
+            function (event) {
+
+              moveTooltip(event);
+
+            }
+          )
+          .on(
+            "mouseleave",
+            hideTooltip
+          )
+          .on(
+            "click",
+            function (event) {
+
+              event.stopPropagation();
+
+              selectIsland(
+                island.iso,
+                island.label
+              );
+
+            }
+          );
+
+
+        /*
+         * Island labels
+         */
+
+        var labelOffset =
+          island.iso === "CPV"
+            ? [-2, -13]
+            : [35, 4];
+
+
+        islandGroup
+          .append("text")
+          .attr(
+            "class",
+            "gdwa-island-label"
+          )
+          .attr(
+            "x",
+            p[0] + labelOffset[0]
+          )
+          .attr(
+            "y",
+            p[1] + labelOffset[1]
+          )
+          .text(
+            island.label
+          );
+
+      }
+    );
+
+
+    /* =======================================================
+       GULF OF GUINEA
+       ======================================================= */
+
+    var gulf =
+      projection([
+        2.5,
+        2.3
+      ]);
+
+
+    mapGroup
+      .append("text")
+      .attr(
+        "class",
+        "gdwa-gulf"
+      )
+      .attr(
+        "x",
+        gulf[0]
+      )
+      .attr(
+        "y",
+        gulf[1]
+      )
+      .text(
+        "GULF OF GUINEA"
+      );
+
+
+    /* =======================================================
+       COUNTRY INTERACTION
+       ======================================================= */
+
+    countryPaths
+
+      .on(
+        "mouseenter",
+        function (event, d) {
+
+          showCountry(
+            d,
+            event
+          );
+
+        }
+      )
+
+      .on(
+        "mousemove",
+        function (event) {
+
+          moveTooltip(event);
+
+        }
+      )
+
+      .on(
+        "mouseleave",
+        hideTooltip
+      )
+
+      .on(
+        "click",
+        function (event, d) {
+
+          event.stopPropagation();
+
+          selectCountry(d);
+
+        }
+      )
+
+      .on(
+        "keydown",
+        function (event, d) {
+
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
+
+            event.preventDefault();
+
+            selectCountry(d);
+
+          }
+
+        }
+      );
+
+
+    /* =======================================================
+       RESET BUTTON
+       ======================================================= */
+
+    replay.onclick =
+      function () {
+
+        countryPaths
+          .classed(
+            "selected",
+            false
+          )
+          .classed(
+            "dimmed",
+            false
+          );
+
+
+        islandGroup
+          .selectAll(
+            ".gdwa-island-study"
+          )
+          .attr(
+            "opacity",
+            1
+          );
+
+
+        hideTooltip();
+
+      };
+
+
+    /* =======================================================
+       RESET WHEN MAP BACKGROUND IS CLICKED
+       ======================================================= */
+
+    svg.addEventListener(
+      "click",
+      function () {
+
+        countryPaths
+          .classed(
+            "selected",
+            false
+          )
+          .classed(
+            "dimmed",
+            false
+          );
+
+
+        islandGroup
+          .selectAll(
+            ".gdwa-island-study"
+          )
+          .attr(
+            "opacity",
+            1
+          );
+
+
+        hideTooltip();
+
+      }
+    );
+
+
+    /* =======================================================
+       MAP SUCCESSFULLY LOADED
+       ======================================================= */
+
+    loading.classList.add(
+      "hidden"
+    );
+
+
+    console.log(
+      "GlobalDev West Africa map loaded successfully."
+    );
+
+
+    /* =======================================================
+       FUNCTIONS
+       ======================================================= */
+
+
+    function getISO(feature) {
+
+      var p =
+        feature.properties || {};
+
+
+      /*
+       * Natural Earth can expose ISO information
+       * under different property names.
+       */
+
+      var candidates = [
+
+        p.ISO_A3,
+        p.ADM0_A3,
+        p.SOV_A3,
+        p.ISO_A3_EH
+
+      ];
+
+
+      for (
+        var i = 0;
+        i < candidates.length;
+        i++
+      ) {
+
+        if (
+          candidates[i] &&
+          candidates[i] !== "-99"
+        ) {
+
+          return String(
+            candidates[i]
+          ).toUpperCase();
+
+        }
+
+      }
+
+
+      return "";
+
+    }
+
+
+    function getName(feature) {
+
+      var p =
+        feature.properties || {};
+
+
+      return (
+
+        p.ADMIN ||
+        p.NAME ||
+        p.GEOUNIT ||
+        p.NAME_LONG ||
+        ""
+
+      );
+
+    }
+
+
+    function showCountry(
+      d,
+      event
+    ) {
+
+      var iso =
+        getISO(d);
+
+      var name =
+        names[iso] ||
+        getName(d);
+
+      var study =
+        studyISO.has(iso);
+
+
+      showSimpleTooltip(
+
+        name,
+
+        study
+          ? "Study country"
+          : "Other country",
+
+        event
+
+      );
+
+    }
+
+
+    function showSimpleTooltip(
+      name,
+      status,
+      event
+    ) {
+
+      tooltip.innerHTML =
+
+        "<strong>" +
+        escapeHTML(name) +
+        "</strong>" +
+
+        "<div class='gdwa-tooltip-status'>" +
+        escapeHTML(status) +
+        "</div>";
+
+
+      tooltip.classList.add(
+        "visible"
+      );
+
+
+      moveTooltip(event);
+
+    }
+
+
+    function moveTooltip(event) {
+
+      var container =
+        root.querySelector(
+          ".gdwa-map-container"
+        );
+
+
+      if (!container) {
+        return;
+      }
+
+
+      var rect =
+        container.getBoundingClientRect();
+
+
+      var x =
+        event.clientX -
+        rect.left +
+        12;
+
+
+      var y =
+        event.clientY -
+        rect.top +
+        12;
+
+
+      var w =
+        tooltip.offsetWidth ||
+        150;
+
+
+      var h =
+        tooltip.offsetHeight ||
+        50;
+
+
+      if (
+        x + w >
+        rect.width - 8
+      ) {
+
+        x =
+          event.clientX -
+          rect.left -
+          w -
+          12;
+
+      }
+
+
+      if (
+        y + h >
+        rect.height - 8
+      ) {
+
+        y =
+          event.clientY -
+          rect.top -
+          h -
+          12;
+
+      }
+
+
+      tooltip.style.left =
+        Math.max(
+          6,
+          x
+        ) + "px";
+
+
+      tooltip.style.top =
+        Math.max(
+          6,
+          y
+        ) + "px";
+
+    }
+
+
+    function hideTooltip() {
+
+      tooltip.classList.remove(
+        "visible"
+      );
+
+    }
+
+
+    function selectCountry(d) {
+
+      var iso =
+        getISO(d);
+
+      var name =
+        names[iso] ||
+        getName(d);
+
+
+      countryPaths
+
+        .classed(
+          "selected",
+          function (country) {
+
+            return country === d;
+
+          }
+        )
+
+        .classed(
+          "dimmed",
+          function (country) {
+
+            return country !== d;
+
+          }
+        );
+
+
+      var container =
+        root.querySelector(
+          ".gdwa-map-container"
+        );
+
+
+      if (!container) {
+        return;
+      }
+
+
+      var rect =
+        container.getBoundingClientRect();
+
+
+      showSimpleTooltip(
+
+        name,
+
+        studyISO.has(iso)
+          ? "Study country"
+          : "Other country",
+
+        {
+
+          clientX:
+            rect.left + 20,
+
+          clientY:
+            rect.top + 20
+
+        }
+
+      );
+
+    }
+
+
+    function selectIsland(
+      iso,
+      name
+    ) {
+
+      /*
+       * Dim mainland countries.
+       */
+
+      countryPaths
+        .classed(
+          "dimmed",
+          true
+        )
+        .classed(
+          "selected",
+          false
+        );
+
+
+      /*
+       * Keep island marker visible.
+       */
+
+      islandGroup
+        .selectAll(
+          ".gdwa-island-study"
+        )
+        .attr(
+          "opacity",
+          1
+        );
+
+
+      var container =
+        root.querySelector(
+          ".gdwa-map-container"
+        );
+
+
+      if (!container) {
+        return;
+      }
+
+
+      var rect =
+        container.getBoundingClientRect();
+
+
+      showSimpleTooltip(
+
+        name,
+
+        "Study country",
+
+        {
+
+          clientX:
+            rect.left + 20,
+
+          clientY:
+            rect.top + 20
+
+        }
+
+      );
+
+    }
+
+
+    function escapeHTML(value) {
+
+      return String(value)
+
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+
+        .replace(
+          /</g,
+          "&lt;"
+        )
+
+        .replace(
+          />/g,
+          "&gt;"
+        )
+
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+  }
+
+
+  /* =======================================================
+     START
+     ======================================================= */
+
+  startMap();
+
+
+})();
+
+</script>
